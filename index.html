@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お給料計算アプリ</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/vue@3.2.6/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section>
+    <div class="container">
+      <h1>お給料計算アプリ</h1>
+
+      <button v-on:click="next(0)" class="start-btn">はじめる</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h1>名前を入力</h1>
+
+      <div class="contents">
+        <input type="text" v-model="name">さん
+      </div>
+
+      <button class="back-btn" v-on:click="back(1)">戻る</button>
+      <button class="next-btn" v-on:click="next(1)">次へ</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h1>年月を入力</h1>
+
+      <div class="contents">
+        <input type="number" v-model="year">年
+        <input type="number" v-model="month">月
+      </div>
+
+      <button class="back-btn" v-on:click="back(2)">戻る</button>
+      <button class="next-btn" v-on:click="next(2)">次へ</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h1>アルバイトを登録</h1>
+
+      <div class="flex-job">
+        <div v-for="(key, i) in Object.keys(job)" v-model="job">
+          <input type="text" placeholder="アルバイト先" v-model="job[key].name">
+          <input type="number" placeholder="時給" min="0" v-model="job[key].money">
+          <button v-on:click="deleteJob(key)" class="delete-btn">×</button>
+        </div>
+
+        <div>
+          <button v-on:click="addJob" class="btn">アルバイトを追加</button>
+        </div>
+      </div>
+
+      <button class="back-btn" v-on:click="back(3)">戻る</button>
+      <button class="next-btn" v-on:click="next(3)">次へ</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h1>働いた時間を登録</h1>
+      <div class="flex-calendar">
+        <div v-for="d in day" class="day">
+          <p>{{ d }}</p>
+        </div>
+        <div v-for="s in space()" class="date-box">
+          <div class="space"></div>
+        </div>
+        <div v-for="d in date" class="date-box">
+          <div class="date">
+            <div>
+              <p>{{ d.date }}</p>
+              <button v-on:click="addShift(d.date)" class="shift-btn-add">+</button>
+            </div>
+            <div v-for="(s, i) in d.shift" class="flex-shift">
+              <p>{{ getJobName(s.id) }}　{{ s.time }}h</p>
+              <button v-on:click="deleteShift(d.date, i)" class="shift-btn-delete">×</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="back-btn" v-on:click="back(4)">戻る</button>
+      <button class="next-btn" v-on:click="next(4)">次へ</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h1>今月のお給料は{{ sum() }}円です！</h1>
+
+      <div class="contents">
+        <p>{{ message }}</p>
+      </div>
+
+      <button class="back-btn" v-on:click="back(5)">戻る</button>
+      <button class="next-btn" v-on:click="back(1)">最初からやり直す</button>
+    </div>
+  </section>
+
+</body>
+</html>
