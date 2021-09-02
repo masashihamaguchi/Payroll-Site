@@ -1,5 +1,4 @@
 /* styke.css */
-
 body {
   margin: 0;
   color: #595959;
@@ -190,4 +189,60 @@ input {
   margin: 0.2em 0 0.2em 1em;
   padding: 0.2em 0.5em;
   background-color: #ea5455;
+}
+
+.github {
+  width: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  margin-top: 20vh;
+  padding: .5rem;
+  color: #4f5959;
+  background-color: #f6f6f6;
+  font-weight: 700;
+  display: inline-flex;
+  border-color: #f6f6f6;
+  border-radius: 9999px;
+  place-content: center;
+  place-items: center;
+  letter-spacing: .05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.icon {
+  opacity: .7;
+  font-style: italic;
+  font-size: 2rem;
+  margin: 0 8px;
+  display: inline-block;
+  font: normal normal normal 14px/2 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.outbound {
+  color: #aaa;
+  display: inline-block;
+  vertical-align: middle;
+  /* position: relative;
+  top: -1px; */
+}
+
+.icon:before {
+  content: "\f09b";
+}
+
+.sr-only {
+  /* position: absolute; */
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
